@@ -3,7 +3,7 @@ class GitTui < Formula
   homepage "https://github.com/Bepi64/git-tui"
   url "https://github.com/Bepi64/git-tui.git",
       tag:      "v0.3.0",
-      revision: "PLACEHOLDER"
+      revision: "f64c1cc2bc033c61228026ba76b86a3f6d6afefa"
   license "Apache-2.0"
 
   depends_on "go" => :build
