@@ -1,4 +1,4 @@
-BINARY := bin/tui
+BINARY := bin/git-tui
 PACKAGE := ./cmd/tui
 
 export CGO_ENABLED := 1
