@@ -16,13 +16,13 @@ import (
 
 func main() {
 	if len(os.Args) != 2 {
-		fmt.Fprintln(os.Stderr, "usage: tui <owner>/<repo>")
+		fmt.Fprintln(os.Stderr, "usage: git-tui <owner>/<repo>")
 		os.Exit(1)
 	}
 
 	owner, repo, ok := strings.Cut(os.Args[1], "/")
 	if !ok || owner == "" || repo == "" {
-		fmt.Fprintln(os.Stderr, "usage: tui <owner>/<repo>  (exemple: tui charmbracelet/bubbletea)")
+		fmt.Fprintln(os.Stderr, "usage: git-tui <owner>/<repo>  (exemple: tui charmbracelet/bubbletea)")
 		os.Exit(1)
 	}
 
