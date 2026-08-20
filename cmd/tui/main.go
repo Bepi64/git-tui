@@ -4,14 +4,17 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"strings"
 
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/google/go-github/v90/github"
 
 	"my_first_go_tool/internal/ghclient"
 	"my_first_go_tool/internal/ui"
+	"my_first_go_tool/internal/updater"
 )
 
 func main() {
@@ -25,6 +28,13 @@ func main() {
 		fmt.Fprintln(os.Stderr, "usage: git-tui <owner>/<repo>  (exemple: tui charmbracelet/bubbletea)")
 		os.Exit(1)
 	}
+
+	gh, _ := github.NewClient()
+	go updater.Run(context.Background(), updater.Config{
+		GH:    gh,
+		Owner: "Bepi64",
+		Repo:  "git-tui",
+	})
 
 	client, err := ghclient.New(os.Getenv("GITHUB_TOKEN"), owner, repo)
 	if err != nil {

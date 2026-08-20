@@ -22,3 +22,6 @@ coverage.*
 
 # Fichiers spécifiques macOS
 .DS_Store
+
+# Script local de release (tag + bump de la Formula + push)
+/update.sh
