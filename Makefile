@@ -3,12 +3,15 @@ PACKAGE := ./cmd/tui
 
 export CGO_ENABLED := 1
 
-.PHONY: build run test vet fmt tidy clean
+.PHONY: build sign run test vet fmt tidy clean
 
 build:
 	go build -o $(BINARY) $(PACKAGE)
 
-run: build
+sign: build
+	codesign -s - --force --options runtime $(BINARY)
+
+run: sign
 	./$(BINARY) $(ARGS)
 
 test:
