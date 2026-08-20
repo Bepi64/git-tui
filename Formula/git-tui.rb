@@ -10,7 +10,7 @@ class GitTui < Formula
 
   resource "libgit2-plugin" do
     url "https://github.com/Bepi64/git-tui/releases/download/v0.2.0/plugin-darwin-arm64.bundle"
-    sha256 "9761d53eb41ab41c23e10c087bfd239f10e4c8add1fdd9895ac514fbd685a40b"
+    sha256 "3c3533d06457b1456dbb1867410cd68be47c2f34fca162b2e41be3a7acba057a"
   end
 
   def install
