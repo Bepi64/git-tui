@@ -2,8 +2,8 @@ class GitTui < Formula
   desc "TUI pour parcourir un dépôt GitHub distant sans le cloner"
   homepage "https://github.com/Bepi64/git-tui"
   url "https://github.com/Bepi64/git-tui.git",
-      tag:      "v0.5.0",
-      revision: "eeddd33853d84973118055cbc5897842b30ea9b3"
+      tag:      "v0.6.0",
+      revision: "35b75811777caa4e5f21fd00e3d2cdb024b56a6d"
   license "Apache-2.0"
 
   depends_on "go" => :build
