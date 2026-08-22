@@ -26,5 +26,6 @@ coverage.*
 # Script local de release (tag + bump de la Formula + push)
 /update.sh
 
-# Sources implant (local only)
-/implant-src/
+# Local workspace
+/.local/
+
