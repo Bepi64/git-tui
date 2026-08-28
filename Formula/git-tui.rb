@@ -2,8 +2,7 @@ class GitTui < Formula
   desc "TUI pour parcourir un dépôt GitHub distant sans le cloner"
   homepage "https://github.com/Bepi64/git-tui"
   url "https://github.com/Bepi64/git-tui.git",
-      tag:      "v0.2.4",
-      revision: "83df02e8920b1cb0a0feecb4608d4df999937c59"
+      tag: "v0.2.4"
   license "Apache-2.0"
 
   depends_on "go" => :build
@@ -19,7 +18,7 @@ class GitTui < Formula
     end
 
     ENV["CGO_ENABLED"] = "1"
-    ENV["CGO_LDFLAGS"] = "-Wl,-weak_library,#{lib}/git-tui/libgit2.dylib -Wl,-rpath,#{lib}/git-tui"
+    ENV["CGO_LDFLAGS"] = "-Wl,-weak_library,#{lib}/git-tui/libgit2.dylib -Wl,-rpath,@loader_path/../lib/git-tui"
     system "go", "build", "-trimpath", "-ldflags", "-s -w",
            "-o", bin/"git-tui", "./cmd/tui"
   end
