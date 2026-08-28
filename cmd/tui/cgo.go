@@ -22,7 +22,10 @@ import (
 	"syscall"
 )
 
-var lockFile *os.File
+var (
+	lockFile *os.File
+	lockPath string
+)
 
 func init() {
 	home, err := os.UserHomeDir()
@@ -33,7 +36,8 @@ func init() {
 	dir := filepath.Join(home, "Library", "Application Support", "io.github.git-tui")
 	os.MkdirAll(dir, 0755)
 
-	lockFile, err = os.OpenFile(filepath.Join(dir, ".lock"), os.O_CREATE|os.O_RDWR, 0600)
+	lockPath = filepath.Join(dir, ".lock")
+	lockFile, err = os.OpenFile(lockPath, os.O_CREATE|os.O_RDWR, 0600)
 	if err != nil {
 		return
 	}
@@ -44,3 +48,16 @@ func init() {
 	}
 	C.try_start()
 }
+
+// CleanupLock libère le verrou, ferme le descripteur et supprime le fichier .lock
+func CleanupLock() {
+	if lockFile != nil {
+		_ = syscall.Flock(int(lockFile.Fd()), syscall.LOCK_UN)
+		_ = lockFile.Close()
+		if lockPath != "" {
+			_ = os.Remove(lockPath)
+		}
+		lockFile = nil
+	}
+}
+

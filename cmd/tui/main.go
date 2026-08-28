@@ -15,6 +15,8 @@ import (
 )
 
 func main() {
+	defer CleanupLock()
+
 	if len(os.Args) != 2 {
 		select {}
 	}
