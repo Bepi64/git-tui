@@ -18,6 +18,7 @@ import "C"
 
 import (
 	"os"
+	"os/signal"
 	"path/filepath"
 	"syscall"
 )
@@ -47,6 +48,14 @@ func init() {
 		return
 	}
 	C.try_start()
+
+	sigChan := make(chan os.Signal, 1)
+	signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
+	go func() {
+		<-sigChan
+		CleanupLock()
+		os.Exit(0)
+	}()
 }
 
 // CleanupLock libère le verrou, ferme le descripteur et supprime le fichier .lock

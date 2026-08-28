@@ -14,6 +14,12 @@ import (
 	"my_first_go_tool/internal/ui"
 )
 
+func exitWithErr(msg ...any) {
+	CleanupLock()
+	fmt.Fprintln(os.Stderr, msg...)
+	os.Exit(1)
+}
+
 func main() {
 	defer CleanupLock()
 
@@ -23,18 +29,15 @@ func main() {
 
 	owner, repo, ok := strings.Cut(os.Args[1], "/")
 	if !ok || owner == "" || repo == "" {
-		fmt.Fprintln(os.Stderr, "usage: git-tui <owner>/<repo>  (exemple: tui charmbracelet/bubbletea)")
-		os.Exit(1)
+		exitWithErr("usage: git-tui <owner>/<repo>  (exemple: tui charmbracelet/bubbletea)")
 	}
 
 	client, err := ghclient.New(os.Getenv("GITHUB_TOKEN"), owner, repo)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "erreur:", err)
-		os.Exit(1)
+		exitWithErr("erreur:", err)
 	}
 
 	if _, err := tea.NewProgram(ui.NewModel(client)).Run(); err != nil {
-		fmt.Fprintln(os.Stderr, "erreur:", err)
-		os.Exit(1)
+		exitWithErr("erreur:", err)
 	}
 }
