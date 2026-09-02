@@ -11,12 +11,6 @@
 *.out
 coverage.*
 
-# Code coverage profiles and other test artifacts
-*.out
-coverage.*
-*.coverprofile
-profile.cov
-
 # Variables d'environnement locales (ex: GITHUB_TOKEN)
 .env
 .env.*
@@ -35,7 +29,3 @@ profile.cov
 # Local workspace
 /.local/
 
-# Go workspace file
-go.work
-go.work.sum
-.env

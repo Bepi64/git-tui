@@ -5,7 +5,7 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 
-	"my_first_go_tool/internal/ghclient"
+	"github.com/bepi64/homebrew-tap/internal/ghclient"
 )
 
 // Model est l'état complet du TUI (architecture Elm-like de Bubble Tea).

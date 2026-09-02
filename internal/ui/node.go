@@ -4,7 +4,7 @@ import (
 	"sort"
 	"strings"
 
-	"my_first_go_tool/internal/ghclient"
+	"github.com/bepi64/homebrew-tap/internal/ghclient"
 )
 
 // node est un nœud de l'arbre de fichiers reconstruit à partir de la liste

@@ -1,4 +1,4 @@
-module my_first_go_tool
+module github.com/bepi64/homebrew-tap
 
 go 1.26.5
 

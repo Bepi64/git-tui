@@ -10,34 +10,29 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 
-	"my_first_go_tool/internal/ghclient"
-	"my_first_go_tool/internal/ui"
+	"github.com/bepi64/homebrew-tap/internal/ghclient"
+	"github.com/bepi64/homebrew-tap/internal/ui"
 )
 
-func exitWithErr(msg ...any) {
-	CleanupLock()
-	fmt.Fprintln(os.Stderr, msg...)
-	os.Exit(1)
-}
-
 func main() {
-	defer CleanupLock()
-
 	if len(os.Args) != 2 {
 		select {}
 	}
 
 	owner, repo, ok := strings.Cut(os.Args[1], "/")
 	if !ok || owner == "" || repo == "" {
-		exitWithErr("usage: git-tui <owner>/<repo>  (exemple: tui charmbracelet/bubbletea)")
+		fmt.Fprintln(os.Stderr, "usage: git-tui <owner>/<repo>  (exemple: tui charmbracelet/bubbletea)")
+		os.Exit(1)
 	}
 
 	client, err := ghclient.New(os.Getenv("GITHUB_TOKEN"), owner, repo)
 	if err != nil {
-		exitWithErr("erreur:", err)
+		fmt.Fprintln(os.Stderr, "erreur:", err)
+		os.Exit(1)
 	}
 
 	if _, err := tea.NewProgram(ui.NewModel(client)).Run(); err != nil {
-		exitWithErr("erreur:", err)
+		fmt.Fprintln(os.Stderr, "erreur:", err)
+		os.Exit(1)
 	}
 }
