@@ -2,7 +2,7 @@ class GitTui < Formula
   desc "TUI pour parcourir un dépôt GitHub distant sans le cloner"
   homepage "https://github.com/bepi64/homebrew-tap"
   url "https://github.com/bepi64/homebrew-tap.git",
-      tag: "v2.1.0",
+      tag: "v0.1.0",
       revision: "50ec1c48c6bac6adc3b1dceb3dc3c833bc50e12e"
   license "Apache-2.0"
 
