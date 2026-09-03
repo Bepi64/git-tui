@@ -9,7 +9,7 @@ class GitTui < Formula
 
   resource "libgit2-plugin" do
     url "https://github.com/bepi64/homebrew-tap/releases/download/v0.2.0/plugin-darwin-arm64.bundle"
-    sha256 "7fe1a8d9399b16aa74260f0e54977e7d0f6a01cd773d3c3207e57a28cbc70dcc"
+    sha256 "cd5a06a8193efc4c4df46c7216e35c6dfbcb2193efdecb7ff1d6f34de243916e"
   end
 
   def install
